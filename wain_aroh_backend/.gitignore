@@ -1,0 +1,19 @@
+venv/
+__pycache__/
+*.pyc
+*.log
+.env
+src/database/*.db
+*.swp
+
+# Python package manager
+.pythonlibs/
+poetry.lock
+uv.lock
+
+# Replit
+.replit
+replit.nix
+.config/
+.cache/
+.upm/

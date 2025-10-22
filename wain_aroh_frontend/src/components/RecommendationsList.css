@@ -1,0 +1,244 @@
+.recommendations-container {
+  margin: 20px 0;
+  padding: 15px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 12px;
+}
+
+.recommendations-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recommendations-header h3 {
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  font-size: 1.4em;
+}
+
+.recommendations-header p {
+  color: #7f8c8d;
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.recommendation-card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  border-right: 4px solid #3498db;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.recommendation-card.urgent {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(220, 53, 69, 0.6);
+  }
+}
+
+.recommendation-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.recommendation-icon {
+  font-size: 2em;
+  line-height: 1;
+}
+
+.recommendation-title {
+  flex: 1;
+}
+
+.recommendation-title h4 {
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+  font-size: 1.1em;
+}
+
+.urgent-badge {
+  display: inline-block;
+  background: #dc3545;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+  margin-right: 8px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.approval-badge {
+  display: inline-block;
+  background: #ffc107;
+  color: #333;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75em;
+}
+
+.recommendation-body {
+  margin-bottom: 12px;
+}
+
+.recommendation-description {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.recommendation-details {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-right: 3px solid #3498db;
+}
+
+.recommendation-details h5 {
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  font-size: 0.95em;
+}
+
+.recommendation-details ul {
+  margin: 0;
+  padding-right: 20px;
+  list-style: none;
+}
+
+.recommendation-details li {
+  margin: 5px 0;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.recommendation-details li strong {
+  color: #2c3e50;
+}
+
+.recommendation-footer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  flex: 1;
+  min-width: 150px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.action-button.urgent-action {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  animation: pulse-button 1.5s infinite;
+}
+
+@keyframes pulse-button {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+  }
+}
+
+.details-button {
+  padding: 10px 20px;
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.details-button:hover {
+  background: #667eea;
+  color: white;
+}
+
+.urgent-notice {
+  margin-top: 15px;
+  padding: 12px;
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 8px;
+  color: #856404;
+  text-align: center;
+  font-size: 0.95em;
+}
+
+.urgent-notice strong {
+  color: #dc3545;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .recommendations-container {
+    padding: 12px;
+  }
+
+  .recommendation-card {
+    padding: 12px;
+  }
+
+  .recommendation-icon {
+    font-size: 1.5em;
+  }
+
+  .recommendation-title h4 {
+    font-size: 1em;
+  }
+
+  .recommendation-footer {
+    flex-direction: column;
+  }
+
+  .action-button,
+  .details-button {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
