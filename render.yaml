@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: wain-aroh
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: |
+      cd wain_aroh_backend
+      pip install -r requirements.txt
+      python populate_hospitals.py
+      cd ../wain_aroh_frontend
+      npm install -g pnpm
+      pnpm install
+      pnpm run build
+      cp -r dist/* ../wain_aroh_backend/static/
+    startCommand: cd wain_aroh_backend && gunicorn --chdir src main:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: OPENAI_API_KEY
+        sync: false
+
