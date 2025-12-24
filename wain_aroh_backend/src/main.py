@@ -21,6 +21,8 @@ from src.routes.metrics_api import metrics_bp
 from src.routes.appointment_api import appointment_bp
 from src.routes.training_analytics_api import training_analytics_api
 from src.routes.enhanced_conversation_api import enhanced_conversation_api
+from src.routes.schedule_admin_api import schedule_admin_api
+from src.routes.routing_api import routing_api
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static'))
 
@@ -52,6 +54,8 @@ app.register_blueprint(metrics_bp)
 app.register_blueprint(appointment_bp)
 app.register_blueprint(training_analytics_api)
 app.register_blueprint(enhanced_conversation_api)
+app.register_blueprint(schedule_admin_api)
+app.register_blueprint(routing_api)
 
 # uncomment if you need to use database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
