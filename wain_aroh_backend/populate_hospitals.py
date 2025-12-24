@@ -4,8 +4,8 @@ Script to populate database with sample hospitals in Riyadh
 
 import sys
 import os
-sys.path.insert(0, '/home/ubuntu/wain_aroh_backend')
-os.chdir('/home/ubuntu/wain_aroh_backend')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 from flask import Flask
 from src.models.user import db
