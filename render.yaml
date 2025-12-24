@@ -6,18 +6,25 @@ services:
     plan: free
     branch: main
     buildCommand: |
-      cd wain_aroh_backend
-      pip install -r requirements.txt
-      python populate_hospitals.py
-      cd ../wain_aroh_frontend
-      npm install -g pnpm
-      pnpm install
-      pnpm run build
+      cd wain_aroh_backend && 
+      pip install --upgrade pip && 
+      pip install -r requirements.txt && 
+      python populate_hospitals.py && 
+      cd ../wain_aroh_frontend && 
+      npm install -g pnpm && 
+      pnpm install && 
+      pnpm run build && 
+      mkdir -p ../wain_aroh_backend/static && 
       cp -r dist/* ../wain_aroh_backend/static/
-    startCommand: cd wain_aroh_backend && gunicorn --chdir src main:app --bind 0.0.0.0:$PORT
+    startCommand: cd wain_aroh_backend && gunicorn --chdir src --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT main:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: OPENAI_API_KEY
         sync: false
-
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: False
+    healthCheckPath: /
+    autoDeploy: true
