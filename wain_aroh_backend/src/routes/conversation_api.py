@@ -4,7 +4,7 @@ Natural dialogue-based patient navigation
 """
 
 from flask import Blueprint, request, jsonify
-from services.conversational_ai import conversational_ai
+from src.services.conversational_ai import conversational_ai
 import uuid
 
 conversation_api_bp = Blueprint('conversation_api', __name__, url_prefix='/api/conversation')
@@ -241,7 +241,7 @@ def upload_file():
             }), 400
         
         # Import file analyzer
-        from services.file_analyzer import file_analyzer
+        from src.services.file_analyzer import file_analyzer
         
         # Check if file type is supported
         mime_type = file.content_type

@@ -3,7 +3,7 @@ GPS Location Service for Wain Aroh
 Detects patient location and finds nearest facilities
 """
 
-from data.facilities_ngh import (
+from src.data.facilities_ngh import (
     FACILITIES, 
     get_main_hospital,
     find_nearest_facilities,
@@ -127,7 +127,7 @@ class LocationService:
         else:  # CTAS 5
             # CTAS 5 (Non-Urgent) - Clinic or virtual OPD
             if preferred_type == 'virtual':
-                from data.facilities_ngh import get_virtual_opd
+                from src.data.facilities_ngh import get_virtual_opd
                 facility = get_virtual_opd()
                 reason = "حالة بسيطة - يمكنك استخدام العيادات الافتراضية"
             else:
@@ -136,7 +136,7 @@ class LocationService:
                     facility = nearest_clinics[0]
                     reason = f"حالة بسيطة - يمكنك حجز موعد في العيادة (المسافة: {facility['distance_km']:.1f} كم)"
                 else:
-                    from data.facilities_ngh import get_virtual_opd
+                    from src.data.facilities_ngh import get_virtual_opd
                     facility = get_virtual_opd()
                     reason = "حالة بسيطة - يُنصح بالعيادات الافتراضية"
         

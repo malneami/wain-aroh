@@ -3,8 +3,8 @@ Automatic Location Detection Service
 Seamlessly detects patient location and finds nearest appropriate facility
 """
 
-from services.location_service import location_service
-from data.facilities_ngh import FACILITIES, find_nearest_facilities
+from src.services.location_service import location_service
+from src.data.facilities_ngh import FACILITIES, find_nearest_facilities
 import json
 
 class LocationDetector:

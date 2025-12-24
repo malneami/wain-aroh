@@ -6,11 +6,11 @@ Natural dialogue-based interaction for patient navigation
 from openai import OpenAI
 import json
 from datetime import datetime
-from services.location_service import location_service
-from services.agentic_ai import agentic_ai
-from services.location_detector import location_detector
-from data.facilities_ngh import get_main_hospital
-from services.recommendation_generator import generate_recommendations, format_recommendations_response
+from src.services.location_service import location_service
+from src.services.agentic_ai import agentic_ai
+from src.services.location_detector import location_detector
+from src.data.facilities_ngh import get_main_hospital
+from src.services.recommendation_generator import generate_recommendations, format_recommendations_response
 
 client = OpenAI()
 

@@ -16,7 +16,7 @@ from models.recommendation import (
     get_pending_clinic_appointments, update_doctor_communication_status,
     update_clinic_appointment_status
 )
-from services.automated_response import (
+from src.services.automated_response import (
     generate_doctor_approval_response,
     generate_clinic_appointment_response,
     send_automated_response,

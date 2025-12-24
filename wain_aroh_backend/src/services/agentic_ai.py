@@ -9,7 +9,7 @@ Agentic AI System for Wain Aroh
 from openai import OpenAI
 import json
 from datetime import datetime, timedelta
-from data.facilities_ngh import FACILITIES, get_clinics, get_virtual_opd, get_main_hospital
+from src.data.facilities_ngh import FACILITIES, get_clinics, get_virtual_opd, get_main_hospital
 
 client = OpenAI()
 
@@ -337,7 +337,7 @@ class AgenticAI:
     def search_best_center(self, condition, urgency_level, patient_location=None, preferences=None):
         """Search for best medical center"""
         
-        from services.location_service import location_service
+        from src.services.location_service import location_service
         
         # Map urgency to CTAS
         urgency_to_ctas = {
@@ -382,7 +382,7 @@ class AgenticAI:
                           required_specialty=None, patient_location=None):
         """Reallocate patient to more suitable facility"""
         
-        from services.location_service import location_service
+        from src.services.location_service import location_service
         
         # Determine best facility based on condition and CTAS
         if ctas_level <= 2:

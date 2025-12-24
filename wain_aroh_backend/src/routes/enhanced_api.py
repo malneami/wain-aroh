@@ -7,9 +7,9 @@ Enhanced API Routes for Wain Aroh
 """
 
 from flask import Blueprint, request, jsonify
-from services.location_service import location_service
-from services.agentic_ai import agentic_ai
-from data.facilities_ngh import get_main_hospital, get_uccs_near_main, get_clinics
+from src.services.location_service import location_service
+from src.services.agentic_ai import agentic_ai
+from src.data.facilities_ngh import get_main_hospital, get_uccs_near_main, get_clinics
 
 enhanced_api_bp = Blueprint('enhanced_api', __name__, url_prefix='/api/v2')
 
@@ -127,7 +127,7 @@ def get_nearby_facilities():
             }), 400
         
         # Get nearby options
-        from data.facilities_ngh import find_nearest_facilities
+        from src.data.facilities_ngh import find_nearest_facilities
         
         facilities = find_nearest_facilities(
             patient_location['latitude'],
@@ -415,7 +415,7 @@ def complete_triage_with_location():
         patient_location = data.get('patient_location')
         
         # Get CTAS assessment (using existing triage service)
-        from services.ai_triage import assess_patient_condition
+        from src.services.ai_triage import assess_patient_condition
         
         triage_result = assess_patient_condition(conversation)
         ctas_level = triage_result.get('ctas_level', 3)
