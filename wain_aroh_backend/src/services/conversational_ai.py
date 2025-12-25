@@ -11,6 +11,7 @@ from src.services.agentic_ai import agentic_ai
 from src.services.location_detector import location_detector
 from src.data.facilities_ngh import get_main_hospital
 from src.services.recommendation_generator import generate_recommendations, format_recommendations_response
+from src.services.region_detector import region_detector
 
 client = OpenAI()
 
@@ -31,7 +32,7 @@ class ConversationalAI:
     
     def _build_system_prompt(self):
         """Build comprehensive system prompt for conversational AI"""
-        return """أنت مساعد طبي ذكي لمستشفى الحرس الوطني بالرياض. اسمك "وين أروح".
+        return """أنت مساعد طبي ذكي لنظام "وين أروح" - نظام التوجيه الصحي الذكي في المملكة العربية السعودية.
 
 **مهمتك الرئيسية:**
 توجيه المرضى للمكان الصحيح بناءً على حالتهم الصحية.
@@ -73,9 +74,9 @@ class ConversationalAI:
    - لا تقدم التوصيات في بداية المحادثة
    - اجمع المعلومات الكافية أولاً (الأعراض، الشدة، المدة، الموقع)
    - بعد التقييم الكامل، قدم التوصيات:
-     * CTAS 1-2: طوارئ مستشفى الحرس الوطني الرئيسي
-     * CTAS 3: مركز رعاية عاجلة (UCC) إذا كان قريباً
-     * CTAS 4-5: عيادة أو عيادة افتراضية
+     * CTAS 1-2: طوارئ أقرب مستشفى (في جازان: 22 مستشفى متاح، في الرياض: مستشفى الحرس الوطني)
+     * CTAS 3: مركز رعاية عاجلة (UCC) إذا كان قريباً (18 مركز في جازان، 3 في الرياض)
+     * CTAS 4-5: عيادة أو مركز رعاية ممتدة أو عيادة افتراضية
 
 6. **تقديم التفاصيل:**
    - اسم المنشأة
@@ -97,29 +98,38 @@ class ConversationalAI:
 
 **معلومات مهمة:**
 
-**المستشفى الرئيسي:**
-- الاسم: مستشفى الحرس الوطني - الرياض
-- الموقع: طريق الملك عبدالعزيز، حي الملقا
-- الطوارئ: 937
-- متاح: 24/7
+**المناطق المشمولة بالخدمة:**
 
-**مراكز الرعاية العاجلة (UCC):**
-1. مركز الملقا (1.2 كم من المستشفى الرئيسي)
-2. مركز النخيل (3.5 كم)
-3. مركز العليا (8.2 كم)
-4. مركز الربوة (5.8 كم)
+**1. منطقة الرياض:**
+- مستشفى الحرس الوطني - الرياض (طوارئ 24/7)
+- 3 مراكز رعاية عاجلة (UCC)
+- عيادات متعددة
 
-**العيادات:**
-- عيادات الملقا (8 ص - 8 م)
-- عيادات العليا (8 ص - 8 م)
+**2. منطقة جازان (التغطية الشاملة):**
+- 22 مستشفى عام ومتخصص
+- 18 مركز رعاية عاجلة وممتدة
+- تغطية 17 مدينة في المنطقة
+- 1.4 مليون مستفيد
 
-**العيادات الافتراضية:**
-- متاحة 24/7
-- استشارات عن بعد
+**أهم المستشفيات في جازان:**
+1. مستشفى الملك فهد المركزي - جازان (500 سرير، طوارئ 24/7)
+2. مستشفى الأمير محمد بن ناصر - جازان (450 سرير، طوارئ 24/7)
+3. مستشفى جازان العام (400 سرير، طوارئ 24/7)
+4. مستشفى صبيا العام (300 سرير، طوارئ 24/7)
+5. مستشفى صامطة العام (250 سرير، طوارئ 24/7)
+6. مستشفى أبو عريش العام (200 سرير، طوارئ 24/7)
+7. مستشفى بيش العام (200 سرير، طوارئ 24/7)
+
+**مراكز الرعاية العاجلة في جازان (18 مركز):**
+- 6 مراكز تعمل 24 ساعة
+- 12 مركز تعمل 16 ساعة يومياً
+- موزعة في جميع مدن المنطقة
 
 **حالات الطوارئ:**
 - إذا كانت الحالة حرجة جداً، انصح بالاتصال بالإسعاف 997
-- للحالات الطارئة، وجه للطوارئ مباشرة
+- للحالات الطارئة، وجه للطوارئ في أقرب مستشفى
+- في جازان: جميع المستشفيات الـ22 بها أقسام طوارئ 24/7
+- في الرياض: مستشفى الحرس الوطني ومستشفيات أخرى
 
 **ملاحظات:**
 - لا تقدم تشخيصاً طبياً
@@ -188,6 +198,24 @@ class ConversationalAI:
         if gps_data:
             state['location'] = location_service.get_patient_location(gps_data)
             state['location_provided'] = True
+            
+            # Detect region
+            region = region_detector.detect_region(
+                latitude=gps_data.get('latitude'),
+                longitude=gps_data.get('longitude')
+            )
+            state['region'] = region
+            
+            # Add region message to context
+            if region['code'] != 'unknown':
+                region_message = region_detector.get_region_message(
+                    region['code'],
+                    state.get('ctas_level')
+                )
+                state['messages'].append({
+                    'role': 'system',
+                    'content': f"معلومة للنظام: {region_message}"
+                })
         
         # Build conversation context
         messages = [
@@ -238,12 +266,30 @@ class ConversationalAI:
             if text_location.get('detected'):
                 state['location'] = {
                     'latitude': text_location['latitude'],
-                    'longitude': text_location['longitude']
+                    'longitude': text_location['longitude'],
+                    'city': text_location.get('city')
                 }
                 state['location_provided'] = True
                 
+                # Detect region
+                region = region_detector.detect_region(
+                    latitude=text_location.get('latitude'),
+                    longitude=text_location.get('longitude'),
+                    city=text_location.get('city')
+                )
+                state['region'] = region
+                
                 # Add confirmation message
                 confirmation = location_detector.format_location_confirmation(text_location)
+                
+                # Add region info to confirmation
+                if region['code'] != 'unknown':
+                    region_message = region_detector.get_region_message(
+                        region['code'],
+                        state.get('ctas_level')
+                    )
+                    confirmation += f"\n\n{region_message}"
+                
                 state['messages'].append({
                     'role': 'system',
                     'content': confirmation
