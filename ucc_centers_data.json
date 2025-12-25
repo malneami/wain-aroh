@@ -1,0 +1,200 @@
+[
+  {
+    "number": 1,
+    "name_ar": "الشاطئ",
+    "sector": "المركزي",
+    "city": "جازان",
+    "moh_code": "2299",
+    "service_type": "رعاية عاجلة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "24"
+  },
+  {
+    "number": 2,
+    "name_ar": "المضايا",
+    "sector": "المركزي",
+    "city": "جازان",
+    "moh_code": "2278",
+    "service_type": "رعاية عاجلة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "24"
+  },
+  {
+    "number": 3,
+    "name_ar": "صبيا",
+    "sector": "الغربي",
+    "city": "صبيا",
+    "moh_code": "2312",
+    "service_type": "رعاية عاجلة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "24"
+  },
+  {
+    "number": 4,
+    "name_ar": "الصهاليل",
+    "sector": "الغربي",
+    "city": "هروب",
+    "moh_code": "2337",
+    "service_type": "رعاية عاجلة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "24"
+  },
+  {
+    "number": 5,
+    "name_ar": "ابوعريش الشمالي",
+    "sector": "الاوسط",
+    "city": "أبوعريش",
+    "moh_code": "2300",
+    "service_type": "رعاية عاجلة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "24"
+  },
+  {
+    "number": 6,
+    "name_ar": "صامطة",
+    "sector": "الجنوبي",
+    "city": "صامطة",
+    "moh_code": "2304",
+    "service_type": "رعاية عاجلة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "24"
+  },
+  {
+    "number": 7,
+    "name_ar": "الواصلي",
+    "sector": "الاوسط",
+    "city": "أبوعريش",
+    "moh_code": "2259",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 8,
+    "name_ar": "أبو عريش الجنوبي",
+    "sector": "الاوسط",
+    "city": "أبوعريش",
+    "moh_code": "2332",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 9,
+    "name_ar": "العارضة",
+    "sector": "الاوسط",
+    "city": "العارضة",
+    "moh_code": "2307",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "16"
+  },
+  {
+    "number": 10,
+    "name_ar": "الطوال الغربي",
+    "sector": "الجنوبي",
+    "city": "الطوال",
+    "moh_code": "4097",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 11,
+    "name_ar": "الاحد",
+    "sector": "الجنوبي",
+    "city": "أحد المسارحة",
+    "moh_code": "2306",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "16"
+  },
+  {
+    "number": 12,
+    "name_ar": "بيش الشمالي",
+    "sector": "الشمالي",
+    "city": "بيش",
+    "moh_code": "2331",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "16"
+  },
+  {
+    "number": 13,
+    "name_ar": "ابو السداد",
+    "sector": "الشمالي",
+    "city": "الدرب",
+    "moh_code": "3317",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 14,
+    "name_ar": "الشقيق",
+    "sector": "الشمالي",
+    "city": "الدرب",
+    "moh_code": "2310",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "جميع ايام الاسبوع",
+    "working_hours": "16"
+  },
+  {
+    "number": 15,
+    "name_ar": "ضمد الشمالي",
+    "sector": "الغربي",
+    "city": "ضمد",
+    "moh_code": "2338",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 16,
+    "name_ar": "صبيا الجديدة",
+    "sector": "الغربي",
+    "city": "صبيا",
+    "moh_code": "2330",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 17,
+    "name_ar": "مخطط6",
+    "sector": "المركزي",
+    "city": "جازان",
+    "moh_code": "3782",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  },
+  {
+    "number": 18,
+    "name_ar": "محليه",
+    "sector": "المركزي",
+    "city": "جازان",
+    "moh_code": "2252",
+    "service_type": "رعاية ممتدة",
+    "status": "مفعل",
+    "working_days": "الأحد - الخميس",
+    "working_hours": "16"
+  }
+]
